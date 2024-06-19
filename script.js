@@ -1,33 +1,18 @@
-document.getElementById('inputFile').addEventListener('change', handleFile, false);
 document.getElementById('searchRoom').addEventListener('input', filterTable, false);
 document.getElementById('searchNorm').addEventListener('input', filterTable, false);
 
 let jsonData = [];  // Хранит загруженные данные
 
-// Загрузка данных из Local Storage при загрузке страницы
+// Загрузка данных из JSON файла при загрузке страницы
 window.addEventListener('load', () => {
-    const savedData = localStorage.getItem('tableData');
-    if (savedData) {
-        jsonData = JSON.parse(savedData);
-        populateTable(jsonData);
-    }
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            jsonData = data;
+            populateTable(jsonData);
+        })
+        .catch(error => console.error('Ошибка загрузки данных:', error));
 });
-
-function handleFile(e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const firstSheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[firstSheetName];
-        jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        populateTable(jsonData);
-        // Сохраняем данные в Local Storage
-        localStorage.setItem('tableData', JSON.stringify(jsonData));
-    };
-    reader.readAsArrayBuffer(file);
-}
 
 function populateTable(data) {
     const tableBody = document.querySelector('#data-table tbody');

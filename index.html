@@ -31,14 +31,10 @@
             background-color: #f2f2f2;
         }
     </style>
-    <!-- Добавляем библиотеку SheetJS -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Фильтр помещений</h1>
-        <!-- Форма для загрузки файла -->
-        <input type="file" id="inputFile" accept=".xlsx, .xls" />
         <div>
             <label for="searchRoom">Поиск по названию помещения:</label>
             <input type="text" id="searchRoom" placeholder="Введите название помещения">
@@ -48,21 +44,20 @@
             <input type="text" id="searchNorm" placeholder="Введите норматив">
         </div>
         <table id="data-table">
-            <
-<thead>
-    <tr>
-        <th>Помещение</th>
-        <th>Приток</th>
-        <th>Вытяжка</th>
-        <th>Норматив</th>
-        <th>Примечание</th>
-    </tr>
-</thead>
-<tbody>
-    <!-- Данные будут добавлены динамически -->
-</tbody>
-</table>
-</div>
-<script src="script.js"></script>
+            <thead>
+                <tr>
+                    <th>Помещение</th>
+                    <th>Приток</th>
+                    <th>Вытяжка</th>
+                    <th>Норматив</th>
+                    <th>Примечание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Данные будут добавлены динамически -->
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
